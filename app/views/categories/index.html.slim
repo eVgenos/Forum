@@ -1,2 +1,5 @@
-h1 Categories#index
-p Find me in app/views/categories/index.html.slim
+- provide(:title, 'Category')
+h1 Category
+- @categories.each do |cat|
+  h3
+    = link_to cat.title, category_path(cat)
