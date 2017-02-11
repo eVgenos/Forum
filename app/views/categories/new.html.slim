@@ -3,7 +3,9 @@ h1 Add category
 = form_for :category, url: categories_path(@category) do |f|
   - if @category.errors.any?
     - @category.errors.full_messages.each do |msg|
-      = msg
+      div.alert.alert-danger
+        p
+          = msg
   p
     = f.label :title
     br

@@ -1,8 +1,11 @@
+- provide(:title, 'Edit')
 h1 Edit category
 = form_for :category, url: category_path(@category), method: :patch do |f|
   - if @category.errors.any?
     - @category.errors.full_messages.each do |msg|
-      = msg
+      div.alert.alert-danger
+        p
+          = msg
   p
     = f.label :title
     br
