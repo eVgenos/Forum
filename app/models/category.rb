@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  validates :title, presence: true
+  validates :title, :body, presence: true
 
   has_many :messages
   belongs_to :user

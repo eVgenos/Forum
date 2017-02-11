@@ -1,6 +1,6 @@
-- provide(:title, 'Category')
-h1 Category
-= link_to 'New', new_category_path
+- provide(:title, 'Categories')
+h1 Mark Forums
+= link_to 'Add category', new_category_path
 - @categories.each do |cat|
   h3
     = link_to cat.title, category_path(cat)

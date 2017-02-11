@@ -1,11 +1,15 @@
 h1 Add category
-= form_for :category, url: {action: "create"} do |f|
+= form_for :category, url: categories_path(@category) do |f|
   - if @category.errors.any?
     - @category.errors.full_messages.each do |msg|
       = msg
   p
     = f.label :title
     br
-    = f.text_field :title
+    = f.text_field :title, :class => 'form-control'
+  p
+    = f.label :body
+    br
+    = f.text_area :body, :class => 'form-control'
   p
     = f.submit :Add
