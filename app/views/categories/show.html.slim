@@ -17,7 +17,8 @@ hr
 - for i in 0..@messages.size - 2
     div
       strong
-        = @messages[i].content
-        = link_to ' [X]', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: { confirm: 'Are you sure?' }
+        pre
+          = @messages[i].content
+          = link_to ' [X]', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: { confirm: 'Are you sure?' }
 
 
