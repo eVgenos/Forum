@@ -1,12 +1,13 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @message = Message.new
   end
 
   def create
-    @message = Message.new(messages_params)
+    @message = current_user.messages.new(messages_params)
     @message.category = Category.find(params[:category_id])
-    @message.user = User.first
 
     if(@message.save)
       redirect_to @message.category

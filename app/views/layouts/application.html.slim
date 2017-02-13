@@ -12,5 +12,11 @@ html
     = render 'layouts/header'
     .container
       .starter-template
+        - if notice
+          .alert.alert-info
+            = notice
+        - if alert
+          .alert.alert-warning
+            = alert
         = yield
     = render 'layouts/footer'

@@ -2,12 +2,12 @@
 h1
   = @category.title
 p
-  pre
-    = @category.body
+  = @category.body
 hr
-= link_to 'Edit ', edit_category_path(@category), :class => 'btn btn-default'
-= link_to 'Delete', category_path(@category), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger'
-hr
+- if current_user.email == @category.user.email
+  = link_to 'Edit ', edit_category_path(@category), :class => 'btn btn-default'
+  = link_to 'Delete', category_path(@category), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger'
+  hr
 
 = form_for([@category, @category.messages.build]) do |f|
   p
@@ -19,7 +19,10 @@ hr
     div
       strong
         pre
+          = 'Username: ' + @messages[i].user.name
+          br
           = @messages[i].content
-          = link_to ' [X]', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: { confirm: 'Are you sure?' }
+          - if current_user.email == @messages[i].user.email
+            = link_to ' [X]', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: { confirm: 'Are you sure?' }
 
 

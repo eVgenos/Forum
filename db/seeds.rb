@@ -8,8 +8,6 @@
 
 Message.delete_all
 Category.delete_all
-User.delete_all
-user = User.create!(name: 'Evgeniy', email: 'evgenos2709@gmail.com', password: '1111')
 
 categories = { 'HTML' => 'HyperText Markup Language',
                'Ruby' => 'Динамический, рефлективный, интерпретируемый высокоуровневый язык программирования.',

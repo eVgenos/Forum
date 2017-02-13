@@ -1,12 +1,12 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+
   def new
     @category = Category.new
   end
 
   def create
-    @category = Category.new(category_params)
-
-    @category.user = User.first
+    @category = current_user.categories.new(category_params)
 
     if(@category.save)
       redirect_to @category

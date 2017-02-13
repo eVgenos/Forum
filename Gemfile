@@ -8,6 +8,7 @@ end
 ruby '2.3.3'
 
 gem 'rails', '~> 5.0.1'
+gem 'devise'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'slim-rails'
