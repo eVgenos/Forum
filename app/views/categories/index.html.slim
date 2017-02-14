@@ -1,11 +1,31 @@
 - provide(:title, 'Categories')
-h1 Mark Forums
-= link_to 'Add category', new_category_path
-- if @categories.empty?
-  h3 Categories empty
-- @categories.each do |cat|
-  h3
-    = link_to cat.title, category_path(cat)
-    = ', ' + cat.created_at.localtime.strftime('%x, %r')
-    = ', ' + cat.user.name
+
+h1 style='text-align: center; color: grey; font-weight: bold;' Mark Forums
+= link_to 'Add category', new_category_path, class: 'btn btn-primary'
+- unless @categories.empty?
+  h2.sub-header
+    .table-responsive
+      table.table.table-striped
+        thead
+          tr
+            th Name
+            th Created date
+            th User
+        tbody
+        - @categories.each do |cat|
+          tr
+            td
+              = link_to cat.title, category_path(cat)
+            td
+              = cat.created_at.localtime.strftime('%d %b %Y %r')
+            td
+              = cat.user.name
+- else
+  h3 style = 'text-align: center;'
+    strong Categories is empty
+
+
+
+
+
 

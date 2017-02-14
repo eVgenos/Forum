@@ -1,4 +1,8 @@
 - provide(:title, 'Home')
 .jumbotron
-  h1 Home page
-  p ForumByEvgenos
+  - unless current_user
+    h1 Please
+    = link_to 'Sign In', new_user_session_path, class: 'btn btn-primary'
+  - else
+    h1
+      = current_user.name + ', I congratulate you on ForumByEvgenos!'

@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @messages = @category.messages.order(id: :desc)
+    @messages = @category.messages
   end
 
   private def category_params

@@ -1,4 +1,5 @@
 - provide(:title, @category.title)
+
 h1 style='text-align: center;'
   = @category.title
 p
@@ -6,12 +7,12 @@ p
     = @category.body
 hr
 - if current_user.email == @category.user.email
-  = link_to 'Edit ', edit_category_path(@category), :class => 'btn btn-default'
+  = link_to 'Edit ', edit_category_path(@category), :class => 'btn btn-primary'
   = link_to 'Delete', category_path(@category), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger'
   hr
 
 h5
-  strong Comments(#{@category.messages.size})
+  strong Comments(#{ @category.messages.size })
 
 = form_for([@category, @category.messages.build]) do |f|
   p
@@ -19,16 +20,21 @@ h5
   p
     = f.submit :'Add comment', { :class => 'btn btn-default' }
 
-- for i in 0..@messages.size-1
+
+
+- (@messages.size-1).times do |i|
     div
-      strong
-        pre
-          h5
-            = 'Username: ' + @messages[i].user.name + ', '
-            =  @messages[i].created_at.localtime.strftime('%x, %r')
-          br
+      pre
+        h5
+          = 'Username: ' + @messages[i].user.name + ', '
+          =  @messages[i].created_at.localtime.strftime('%x, %r')
+        br
+        strong
           = @messages[i].content
           - if current_user.email == @messages[i].user.email
             = link_to ' [X]', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: { confirm: 'Are you sure?' }
+
+
+
 
 
