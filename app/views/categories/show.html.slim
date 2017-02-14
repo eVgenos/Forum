@@ -27,7 +27,7 @@ h5
       pre
         h5
           = 'Username: ' + @messages[i].user.name + ', '
-          =  @messages[i].created_at.localtime.strftime('%x, %r')
+          =  @messages[i].created_at.localtime.strftime('%d %b %Y %r')
         br
         strong
           = @messages[i].content
