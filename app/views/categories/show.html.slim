@@ -1,13 +1,17 @@
 - provide(:title, @category.title)
-h1
+h1 style='text-align: center;'
   = @category.title
 p
-  = @category.body
+  pre
+    = @category.body
 hr
 - if current_user.email == @category.user.email
   = link_to 'Edit ', edit_category_path(@category), :class => 'btn btn-default'
   = link_to 'Delete', category_path(@category), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger'
   hr
+
+h5
+  strong Comments(#{@category.messages.size})
 
 = form_for([@category, @category.messages.build]) do |f|
   p
@@ -19,7 +23,9 @@ hr
     div
       strong
         pre
-          = 'Username: ' + @messages[i].user.name
+          h5
+            = 'Username: ' + @messages[i].user.name + ', '
+            =  @messages[i].created_at.localtime.strftime('%x, %r')
           br
           = @messages[i].content
           - if current_user.email == @messages[i].user.email
