@@ -9,6 +9,8 @@ ruby '2.3.3'
 
 gem 'rails', '~> 5.0.1'
 gem 'devise'
+gem 'cancancan'
+gem 'rolify'
 gem 'will_paginate', '~> 3.1.0'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
@@ -22,6 +24,15 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+end
+
+group :test do
+  gem 'shoulda-matchers'
 end
 
 group :development do
