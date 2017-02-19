@@ -6,9 +6,9 @@ p
   pre
     = @category.body
 hr
-- if current_user.email == @category.user.email
-  = link_to 'Edit ', edit_category_path(@category), :class => 'btn btn-primary'
-  = link_to 'Delete', category_path(@category), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger'
+- if current_user.email == @category.user.email || current_user.has_role?(:admin) || current_user.has_role?(:moderator)
+  = link_to ' ', edit_category_path(@category), :class => 'glyphicon glyphicon-edit'
+  = link_to '', category_path(@category), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'glyphicon glyphicon-trash'
   hr
 
 h5
@@ -31,8 +31,8 @@ h5
         br
         strong
           = @messages[i].content
-          - if current_user.email == @messages[i].user.email
-            = link_to ' [X]', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: { confirm: 'Are you sure?' }
+          - if current_user.email == @messages[i].user.email || current_user.has_role?(:admin) || current_user.has_role?(:moderator)
+            = link_to ' ', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove'
 
 
 
