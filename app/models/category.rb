@@ -4,5 +4,7 @@ class Category < ApplicationRecord
   has_many :messages
   belongs_to :user
 
+  default_scope { order(id: :desc) }
+
   resourcify
 end

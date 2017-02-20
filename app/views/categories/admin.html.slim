@@ -28,6 +28,10 @@ h1 style='text-align: center; color: grey; font-weight: bold;' Mark Forums
                 td
                   = link_to 'Edit ', edit_category_path(cat), class: 'btn btn-primary'
                   = link_to ' Delete', category_path(cat), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'
+                  - if cat.published == true
+                    = link_to ' Hide', publish_category_path(cat), class: 'btn btn-success'
+                  - else
+                    = link_to ' Publish', publish_category_path(cat), class: 'btn btn-success'
 - else
   h3 style = 'text-align: center;'
     strong Categories is empty

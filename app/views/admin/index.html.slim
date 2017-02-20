@@ -16,4 +16,10 @@ h2.sub-header
               = user.roles.first.name
             td
               = form_tag('/admin/' + user.id.to_s + '?role=moderator', method: :put) do
-                input type='submit' value=('Make Moderator')
+                input class='btn btn-primary' type='submit' value=('Make Moderator')
+            td
+              = form_tag('/admin/' + user.id.to_s + '?role=admin', method: :put) do
+                input class='btn btn-primary' type='submit' value=('Make Admin')
+            td
+              = form_tag('/admin/' + user.id.to_s + '?role=user', method: :put) do
+                input class='btn btn-primary' type='submit' value=('Make User')

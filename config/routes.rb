@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'admin' => 'admin#index'
   put 'admin/:id' => 'admin#update'
   patch 'admin/:id' => 'admin#update'
+  get 'categories/admin' => 'categories#admin', as: :categories_admin
+  get 'categories/admin/:id' => 'categories#publish', as: :publish_category
 
   root 'static_pages#home'
 

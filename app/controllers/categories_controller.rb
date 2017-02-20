@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
     @category = current_user.categories.new(category_params)
 
     if(@category.save)
-      redirect_to @category
+      redirect_to categories_path, notice: 'Your question will be examined by the moderator'
     else
       render 'new'
     end
@@ -37,7 +37,18 @@ class CategoriesController < ApplicationController
   end
 
   def index
+    @categories = Category.where(:published => true)
+  end
+
+  def admin
     @categories = Category.all
+  end
+
+  def publish
+    @category = Category.find(params[:id])
+    @publish = !(@category.published)
+    Category.update(params[:id], published: @publish)
+    redirect_to categories_admin_path
   end
 
   def show
