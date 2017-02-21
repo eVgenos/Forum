@@ -1,5 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def destroy
+    User.update(current_user.id, deleted: true)
+    redirect_to root_path, notice: 'Your account has been deleted'
+  end
+
   private
 
   def sign_up_params

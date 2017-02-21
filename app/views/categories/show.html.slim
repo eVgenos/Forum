@@ -16,23 +16,27 @@ h5
 
 = form_for([@category, @category.messages.build]) do |f|
   p
-    = f.text_area :content, placeholder: 'Leave a comment', :class => 'form-control'
+    = f.text_area :content, placeholder: 'Your answer', :class => 'form-control'
   p
     = f.submit :'Add comment', { :class => 'btn btn-default' }
 
 
 
 - (@messages.size-1).times do |i|
-    div
+    .media
+      a.pull-left href="#"
+        img.media-object alt="" src="http://placehold.it/64x64" /
       pre
-        h5
-          = 'Username: ' + @messages[i].user.name + ', '
-          =  @messages[i].created_at.localtime.strftime('%d %b %Y %r')
-        br
-        strong
-          = @messages[i].content
-          - if current_user.email == @messages[i].user.email || current_user.has_role?(:admin) || current_user.has_role?(:moderator)
-            = link_to ' ', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove'
+        .media-body
+          span style='color: red; font-weight: bold'
+            = @messages[i].user.name
+          small
+            = '•' + @messages[i].created_at.localtime.strftime('%d %b %Y %r')
+            br
+          span style='font-weight: 500;'
+            = @messages[i].content
+            - if current_user.email == @messages[i].user.email || current_user.has_role?(:admin) || current_user.has_role?(:moderator)
+              = link_to ' ', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove'
 
 
 

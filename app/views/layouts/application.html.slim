@@ -9,6 +9,10 @@ html
     = csrf_meta_tags
 
   body
+    - if current_user
+      - if current_user.deleted
+        - controller.reset_session
+        - controller.redirect_to root_path, notice: 'Your account has been deleted'
     = render 'layouts/header'
     .container
       .starter-template
