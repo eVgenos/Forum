@@ -8,7 +8,6 @@ class AdminController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    # @user.revoke @user.roles.first.to_s
     @user.remove_role @user.roles.first.name
     @new_role = params[:role]
     @user.add_role @new_role
