@@ -17,3 +17,5 @@ categories = { 'HTML' => 'HyperText Markup Language',
 categories.each do |c, b|
     user.categories.create!(title: c, body: b)
 end
+
+User.create!

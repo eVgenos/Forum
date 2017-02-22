@@ -13,7 +13,8 @@ h1 style='text-align: center; color: grey; font-weight: bold;' Mark Forums
             th User
             - if current_user
               - if current_user.has_role?(:admin) || current_user.has_role?(:moderator)
-                th Actions
+                th style='text-align: center;' Edit
+                th style='text-align: center;' Delete
         tbody
         - @categories.each do |cat|
           tr
@@ -25,9 +26,10 @@ h1 style='text-align: center; color: grey; font-weight: bold;' Mark Forums
               = cat.user.name
             - if current_user
               - if current_user.has_role?(:admin) || current_user.has_role?(:moderator)
-                td
-                  = link_to 'Edit ', edit_category_path(cat), class: 'btn btn-primary'
-                  = link_to ' Delete', category_path(cat), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'
+                td style='text-align: center;'
+                  = link_to ' ', edit_category_path(cat), class: 'glyphicon glyphicon-edit'
+                td style='text-align: center;'
+                  = link_to ' ', category_path(cat), method: :delete, data: {confirm: 'Are you sure?'}, class: 'glyphicon glyphicon-remove'
 - else
   h3 style = 'text-align: center;'
     strong Categories is empty

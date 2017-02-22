@@ -7,8 +7,8 @@ p
     = @category.body
 hr
 - if current_user.email == @category.user.email || current_user.has_role?(:admin) || current_user.has_role?(:moderator)
-  = link_to ' ', edit_category_path(@category), :class => 'glyphicon glyphicon-edit'
-  = link_to '', category_path(@category), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'glyphicon glyphicon-trash'
+  = link_to 'Edit ', edit_category_path(@category), :class => 'btn btn-primary'
+  = link_to ' Delete', category_path(@category), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-danger'
   hr
 
 h5
@@ -16,7 +16,7 @@ h5
 
 = form_for([@category, @category.messages.build]) do |f|
   p
-    = f.text_area :content, placeholder: 'Your answer', :class => 'form-control'
+    = f.text_area :content, placeholder: 'Your answer...', :class => 'form-control'
   p
     = f.submit :'Add comment', { :class => 'btn btn-default' }
 
@@ -32,11 +32,12 @@ h5
             = @messages[i].user.name
           small
             = '•' + @messages[i].created_at.localtime.strftime('%d %b %Y %r')
+            - if current_user.email == @messages[i].user.email || current_user.has_role?(:admin) || current_user.has_role?(:moderator)
+              = link_to '', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: {confirm: 'Are you sure?'}, class: 'glyphicon glyphicon-remove'
             br
           span style='font-weight: 500;'
             = @messages[i].content
-            - if current_user.email == @messages[i].user.email || current_user.has_role?(:admin) || current_user.has_role?(:moderator)
-              = link_to ' ', category_message_path(@category.id.to_i, @messages[i].id.to_i), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove'
+
 
 
 
