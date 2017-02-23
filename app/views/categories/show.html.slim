@@ -25,7 +25,8 @@ h5
 - (@messages.size-1).times do |i|
     .media
       a.pull-left href="#"
-        img.media-object alt="" src="http://placehold.it/64x64" /
+        img.media-object
+          = image_tag @messages[i].user.avatar.url(:thumb), width: 64, height: 64
       pre
         .media-body
           span style='color: red; font-weight: bold'

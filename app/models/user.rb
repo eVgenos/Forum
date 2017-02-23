@@ -1,5 +1,12 @@
 class User < ApplicationRecord
 
+  has_attached_file :avatar,
+                    styles: { medium: "300x300>", thumb: "64x64#" },
+                    default_url: ':style/missing.jpg'
+
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
+
   after_create :assign_role
 
   # Include default devise modules. Others available are:
