@@ -26,3 +26,5 @@ h2.sub-header
             td
               = form_tag('/admin/' + user.id.to_s + '?role=user', method: :put) do
                 input class='btn btn-primary' type='submit' value=('Make User')
+
+= will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 1

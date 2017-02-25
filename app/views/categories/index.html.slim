@@ -30,6 +30,7 @@ h1 style='text-align: center; color: grey; font-weight: bold;' Mark Forums
                   = link_to ' ', edit_category_path(cat), class: 'glyphicon glyphicon-edit'
                 td style='text-align: center;'
                   = link_to ' ', category_path(cat), method: :delete, data: {confirm: 'Are you sure?'}, class: 'glyphicon glyphicon-remove'
+  = will_paginate @categories, renderer: BootstrapPagination::Rails, inner_window: 1
 - else
   h3 style = 'text-align: center;'
     strong Categories is empty

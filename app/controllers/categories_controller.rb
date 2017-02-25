@@ -37,11 +37,11 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.where(:published => true)
+    @categories = Category.where(:published => true).paginate(page: params[:page], per_page: 7)
   end
 
   def admin
-    @categories = Category.all
+    @categories = Category.all.paginate(page: params[:page], per_page: 7)
   end
 
   def publish
@@ -53,7 +53,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @messages = @category.messages
+    @messages = @category.messages.paginate(page: params[:page], per_page: 7)
   end
 
   private def category_params

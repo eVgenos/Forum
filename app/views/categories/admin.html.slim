@@ -36,6 +36,7 @@ h1 style='text-align: center; color: grey; font-weight: bold;' Mark Forums
                   - else
                     td style='text-align: center;'
                       = link_to '', publish_category_path(cat), class: 'glyphicon glyphicon-eye-open'
+  = will_paginate @categories, renderer: BootstrapPagination::Rails, inner_window: 1
 - else
   h3 style = 'text-align: center;'
     strong Categories is empty

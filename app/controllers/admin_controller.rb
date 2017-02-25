@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   before_action :authorize
 
   def index
-    @users = User.all
+    @users = User.all.paginate(page: params[:page], per_page: 2)
   end
 
   def update
