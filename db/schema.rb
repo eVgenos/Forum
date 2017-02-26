@@ -25,11 +25,6 @@ ActiveRecord::Schema.define(version: 20170226180837) do
     t.index ["user_id"], name: "index_categories_on_user_id", using: :btree
   end
 
-  create_table "grades", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "messages", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
