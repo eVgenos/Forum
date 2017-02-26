@@ -14,6 +14,19 @@ class AdminController < ApplicationController
     redirect_to '/admin'
   end
 
+  def banned
+    @user = User.find(params[:id])
+
+    case
+      when @user.banned?
+        @user.notdeleted!
+      when @user.notdeleted?
+        @user.banned!
+    end
+
+    redirect_to '/admin'
+  end
+
   private
 
   def authorize

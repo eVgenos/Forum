@@ -37,7 +37,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.where(:published => true).paginate(page: params[:page], per_page: 7)
+    @categories = Category.published.paginate(page: params[:page], per_page: 7)
   end
 
   def admin
@@ -46,8 +46,14 @@ class CategoriesController < ApplicationController
 
   def publish
     @category = Category.find(params[:id])
-    @publish = !(@category.published)
-    Category.update(params[:id], published: @publish)
+
+    case
+      when @category.draft?
+        @category.published!
+      when @category.published?
+        @category.draft!
+    end
+
     redirect_to categories_admin_path
   end
 

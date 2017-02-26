@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+  enum status: [:draft, :published]
+
   validates :title, :body, presence: true
 
   has_many :messages

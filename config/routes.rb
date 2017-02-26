@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   get 'admin' => 'admin#index'
+  get 'admin/banned/:id' => 'admin#banned'
   put 'admin/:id' => 'admin#update'
   patch 'admin/:id' => 'admin#update'
   get 'categories/admin' => 'categories#admin', as: :categories_admin
   get 'categories/admin/:id' => 'categories#publish', as: :publish_category
+  get 'admin/banned/:id' => 'admin#banned', as: :banned_user
 
   root 'static_pages#home'
 

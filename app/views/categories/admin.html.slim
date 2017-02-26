@@ -30,10 +30,10 @@ h1 style='text-align: center; color: grey; font-weight: bold;' Mark Forums
                   = link_to '', edit_category_path(cat), class: 'glyphicon glyphicon-edit'
                 td style='text-align: center;'
                   = link_to '', category_path(cat), method: :delete, data: {confirm: 'Are you sure?'}, class: 'glyphicon glyphicon-remove'
-                  - if cat.published == true
+                  - if cat.published?
                     td style='text-align: center;'
                       = link_to '', publish_category_path(cat), class: 'glyphicon glyphicon-eye-close'
-                  - else
+                  - elsif cat.draft?
                     td style='text-align: center;'
                       = link_to '', publish_category_path(cat), class: 'glyphicon glyphicon-eye-open'
   = will_paginate @categories, renderer: BootstrapPagination::Rails, inner_window: 1

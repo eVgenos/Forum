@@ -10,9 +10,12 @@ html
 
   body
     - if current_user
-      - if current_user.deleted
+      - if current_user.deleted?
         - controller.reset_session
         - controller.redirect_to root_path, notice: 'This account was deleted'
+      - elsif current_user.banned?
+        - controller.reset_session
+        - controller.redirect_to root_path, notice: 'This account was banned'
     = render 'layouts/header'
     .container
       .starter-template

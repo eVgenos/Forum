@@ -7,7 +7,7 @@ h2.sub-header
           tr
             th Email
             th Role
-            th Status deleted
+            th style='text-align:center;' Status
       tbody
         - @users.each do |user|
           tr
@@ -16,7 +16,7 @@ h2.sub-header
             td
               = user.roles.first.name
             td style='text-align:center;'
-              = user.deleted
+              = user.status
             td
               = form_tag('/admin/' + user.id.to_s + '?role=moderator', method: :put) do
                 input class='btn btn-primary' type='submit' value=('Make Moderator')
@@ -26,5 +26,9 @@ h2.sub-header
             td
               = form_tag('/admin/' + user.id.to_s + '?role=user', method: :put) do
                 input class='btn btn-primary' type='submit' value=('Make User')
-
+            td
+              - unless user.banned?
+                = link_to 'Ban', banned_user_path(user), class: 'btn btn-danger'
+              - else
+                = link_to 'Allow', banned_user_path(user), class: 'btn btn-danger'
 = will_paginate @users, renderer: BootstrapPagination::Rails, inner_window: 1
