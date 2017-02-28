@@ -1,13 +1,13 @@
 nav.navbar.navbar-inverse.navbar-fixed-top
   .container
     .navbar-header
-      button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navigationbar" data-toggle="collapse" type="button"
-        span.sr-only
+      button.navbar-toggle.collapsed aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" type="button"
+        span.sr-only Toggle navigation
         span.icon-bar
         span.icon-bar
         span.icon-bar
       a.navbar-brand.glyphicon.glyphicon-hand-right href=root_path  ForumByEvgenos
-    navbar.collapse.navbar-collapse
+    #navbar.collapse.navbar-collapse
       ul.nav.navbar-nav
         li
           = link_to ' Home', root_path, class: 'glyphicon glyphicon-home'
