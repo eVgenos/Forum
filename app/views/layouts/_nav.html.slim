@@ -9,32 +9,36 @@ nav.navbar.navbar-inverse.navbar-fixed-top
       a.navbar-brand.glyphicon.glyphicon-hand-right href=root_path  ForumByEvgenos
     #navbar.collapse.navbar-collapse
       ul.nav.navbar-nav
-        li
+        li class=("#{ 'active' if current_page?(root_path)}")
           = link_to ' Home', root_path, class: 'glyphicon glyphicon-home'
-        li
+        li class=("#{'active' if current_page?(categories_path)}")
           = link_to ' Forum', categories_path, class: 'glyphicon glyphicon-blackboard'
         - if current_user
           - if current_user.has_role?(:admin)
-            li
-              = link_to ' Users', admin_path, class: 'glyphicon glyphicon-th-list'
-            li
-              = link_to ' Categories', categories_admin_path, class: 'glyphicon glyphicon-list-alt'
+            li.dropdown class=("#{'active' if current_page?(admin_path) || current_page?(categories_admin_path)}")
+              a.dropdown-toggle.glyphicon.glyphicon-hand-down aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+                |  Admin
+                span.caret
+              ul.dropdown-menu
+                li class=("#{'active' if current_page?(admin_path)}")
+                  = link_to ' Users', admin_path, class: 'glyphicon glyphicon-th-list'
+                li class=("#{'active' if current_page?(categories_admin_path)}")
+                  = link_to ' Questions', categories_admin_path, class: 'glyphicon glyphicon-list-alt'
           - elsif current_user.has_role?(:moderator)
             li
-              = link_to ' Categories', categories_admin_path, class: 'glyphicon glyphicon-list-alt'
+              = link_to ' Questions', categories_admin_path, class: 'glyphicon glyphicon-list-alt'
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          li
+          li class=("#{ 'active' if current_page?(edit_user_registration_path) }")
             = link_to ' ' + current_user.name, edit_user_registration_path, class: 'glyphicon glyphicon-user'
           li
             = link_to ' Logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out'
         - else
-          li
+          li class=("#{'active' if current_page?(new_user_registration_path)}")
             = link_to ' SignUp', new_user_registration_path, class: 'glyphicon glyphicon-registration-mark'
-          li
+          li class=("#{'active' if current_page?(new_user_session_path)}")
             = link_to ' Login', new_user_session_path, class: 'glyphicon glyphicon-log-in'
 /! /.nav-collapse
-
 br
 br
 br

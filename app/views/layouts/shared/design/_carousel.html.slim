@@ -1,0 +1,52 @@
+#myCarousel.carousel.slide data-ride="carousel"
+  /! Indicators
+  ol.carousel-indicators
+    li.active data-slide-to="0" data-target="#myCarousel"
+    li data-slide-to="1" data-target="#myCarousel"
+    li data-slide-to="2" data-target="#myCarousel"
+  .carousel-inner role="listbox"
+    .item.active
+      img.first-slide alt=("First slide") src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" /
+      .container
+        .carousel-caption
+          - if current_user
+            h1 Welcome, #{ current_user.name }
+            p
+              a.btn.btn-lg.btn-primary href="#{ categories_path }" role="button"  Check Forum
+          - else
+            h1 Please
+            a.btn.btn-lg.btn-primary href="#{ new_user_session_path }" role="button"  Sign In
+    .item
+      img.second-slide alt=("Second slide") src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" /
+      .container
+        .carousel-caption
+          h1 Forum statistics
+          table.table.table-condensed
+            thead
+              tr
+                th style='text-align: center;' Questions
+                th style='text-align: center;' Answers
+                th style='text-align: center;' Users
+            tbody
+              tr
+                td
+                  = @categoires.size
+                td
+                  = @messages.size
+                td
+                  = @users.size
+    .item
+      img.third-slide alt=("Third slide") src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" /
+      .container
+        .carousel-caption
+          h1 One more for good measure.
+          p Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+          p
+            a.btn.btn-lg.btn-primary href="#" role="button"  Browse gallery
+  a.left.carousel-control data-slide="prev" href="#myCarousel" role="button"
+    span.glyphicon.glyphicon-chevron-left aria-hidden="true"
+    span.sr-only Previous
+  a.right.carousel-control data-slide="next" href="#myCarousel" role="button"
+    span.glyphicon.glyphicon-chevron-right aria-hidden="true"
+    span.sr-only Next
+

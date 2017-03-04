@@ -1,5 +1,5 @@
 - provide(:title, 'New mark')
-h1 Add category
+h1 style='text-align: center' Add question
 = form_for :category, url: categories_path(@category) do |f|
   - if @category.errors.any?
     - @category.errors.full_messages.each do |msg|

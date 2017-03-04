@@ -1,8 +1,3 @@
-- provide(:title, 'Home')
-.jumbotron
-  - unless current_user
-    h1 Please
-    = link_to 'Sign In', new_user_session_path, class: 'btn btn-primary'
-  - else
-    h1
-      = current_user.name + ', I congratulate you on ForumByEvgenos!'
+= render 'layouts/shared/design/carousel'
+= render 'layouts/shared/design/header'
+= render 'layouts/shared/design/featurette'
